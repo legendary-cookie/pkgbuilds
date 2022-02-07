@@ -1,0 +1,21 @@
+pkgname=vrepo-keyring
+pkgver=1
+pkgrel=1
+pkgdesc="Vrepo keyring"
+arch=(any)
+license=('GPL3')
+groups=()
+install=$pkgname.install
+source=(
+  vrepo.gpg
+  $install
+  )
+
+sha512sums=('2c73d10337e91f27c8ec43b600ad35d059c77ee4b73ad9798428f40ca83673394fac4744207228725aa6374e8178dbb60a0283b069e05cb1c345053027afeb9d'
+            '281840c7579592f43314d7dbba8213883ac54ced39dbac33d8f500345b00aba37f4159270f6068949bc43f3e0a996c13a3e4c336bfdc42620af92ce008b78030')
+package() {
+    local destdir=usr/share/pacman/keyrings
+
+    install -d $pkgdir/$destdir
+    install -Dm644 vrepo.gpg  $pkgdir/$destdir/vrepo.gpg
+}
